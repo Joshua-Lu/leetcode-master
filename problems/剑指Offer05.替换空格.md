@@ -1,21 +1,19 @@
 <p align="center">
-  <a href="https://mp.weixin.qq.com/s/QVF6upVMSbgvZy8lHZS3CQ"><img src="https://img.shields.io/badge/知识星球-代码随想录-blue" alt=""></a>
-  <a href="https://mp.weixin.qq.com/s/b66DFkOp8OOxdZC_xLZxfw"><img src="https://img.shields.io/badge/刷题-微信群-green" alt=""></a>
-  <a href="https://img-blog.csdnimg.cn/20201210231711160.png"><img src="https://img.shields.io/badge/公众号-代码随想录-brightgreen" alt=""></a>
-  <a href="https://space.bilibili.com/525438321"><img src="https://img.shields.io/badge/B站-代码随想录-orange" alt=""></a>
-</p>
-<p align="center"><strong>欢迎大家参与本项目，贡献其他语言版本的代码，拥抱开源，让更多学习算法的小伙伴们收益！</strong></p>
+<a href="https://programmercarl.com/other/kstar.html" target="_blank">
+  <img src="https://code-thinking-1253855093.file.myqcloud.com/pics/20210924105952.png" width="1000"/>
+</a>
+<p align="center"><strong><a href="https://mp.weixin.qq.com/s/tqCxrMEU-ajQumL1i8im9A">参与本项目</a>，贡献其他语言版本的代码，拥抱开源，让更多学习算法的小伙伴们收益！</strong></p>
 
 
 # 题目：剑指Offer 05.替换空格
 
-https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/
+[力扣题目链接](https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/)
 
 请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
 
-示例 1：
-输入：s = "We are happy."
-输出："We%20are%20happy."
+示例 1： 
+输入：s = "We are happy."    
+输出："We%20are%20happy."     
 
 # 思路
 
@@ -42,11 +40,11 @@ i指向新长度的末尾，j指向旧长度的末尾。
 
 时间复杂度，空间复杂度均超过100%的用户。
 
-<img src='https://code-thinking.cdn.bcebos.com/pics/%E5%89%91%E6%8C%87Offer05.%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC.png' width=600> </img></div>
+<img src='https://code-thinking.cdn.bcebos.com/pics/剑指Offer05.替换空格.png' width=600> </img></div>
 
-## C++代码
+C++代码如下：
 
-```C++
+```CPP
 class Solution {
 public:
     string replaceSpace(string s) {
@@ -74,19 +72,19 @@ public:
         return s;
     }
 };
-
 ```
-时间复杂度：O(n)
-空间复杂度：O(1)
+
+* 时间复杂度：O(n)
+* 空间复杂度：O(1)
 
 此时算上本题，我们已经做了七道双指针相关的题目了分别是：
 
-* [27.移除元素](https://mp.weixin.qq.com/s/wj0T-Xs88_FHJFwayElQlA)
-* [15.三数之和](https://mp.weixin.qq.com/s/r5cgZFu0tv4grBAexdcd8A)
-* [18.四数之和](https://mp.weixin.qq.com/s/nQrcco8AZJV1pAOVjeIU_g)
-* [206.翻转链表](https://mp.weixin.qq.com/s/pnvVP-0ZM7epB8y3w_Njwg)
-* [142.环形链表II](https://mp.weixin.qq.com/s/_QVP3IkRZWx9zIpQRgajzA)
-* [344.反转字符串](https://mp.weixin.qq.com/s/X02S61WCYiCEhaik6VUpFA)
+* [27.移除元素](https://programmercarl.com/0027.移除元素.html)
+* [15.三数之和](https://programmercarl.com/0015.三数之和.html)
+* [18.四数之和](https://programmercarl.com/0018.四数之和.html)
+* [206.翻转链表](https://programmercarl.com/0206.翻转链表.html)
+* [142.环形链表II](https://programmercarl.com/0142.环形链表II.html)
+* [344.反转字符串](https://programmercarl.com/0344.反转字符串.html)
 
 # 拓展
 
@@ -121,11 +119,38 @@ for (int i = 0; i < a.size(); i++) {
 所以想处理字符串，我们还是会定义一个string类型。
 
 
-
-
-
-
 ## 其他语言版本
+
+C：
+```C
+char* replaceSpace(char* s){
+    //统计空格数量
+    int count = 0;
+    int len = strlen(s);
+    for (int i = 0; i < len; i++) {
+        if (s[i] == ' ') {
+            count++;
+        }
+    }
+
+    //为新数组分配空间
+    int newLen = len + count * 2;
+    char* result = malloc(sizeof(char) * newLen + 1);
+    //填充新数组并替换空格
+    for (int i = len - 1, j = newLen - 1; i >= 0; i--, j--) {
+        if (s[i] != ' ') {
+            result[j] = s[i];
+        } else {
+            result[j--] = '0';
+            result[j--] = '2';
+            result[j] = '%';
+        }
+    }
+    result[newLen] = '\0';
+
+    return result;
+}
+```
 
 
 Java：
@@ -140,7 +165,8 @@ public static String replaceSpace(StringBuffer str) {
 		//使用 sb 逐个复制 str ，碰到空格则替换，否则直接复制
         for (int i = 0; i < str.length(); i++) {
 		//str.charAt(i) 为 char 类型，为了比较需要将其转为和 " " 相同的字符串类型
-            if (" ".equals(String.valueOf(str.charAt(i)))){
+        //if (" ".equals(String.valueOf(str.charAt(i)))){
+            if (s.charAt(i) == ' ') {
                 sb.append("%20");
             } else {
                 sb.append(str.charAt(i));
@@ -148,18 +174,248 @@ public static String replaceSpace(StringBuffer str) {
         }
         return sb.toString();
     }
-```
 
-Python：
+//方式二：双指针法
+public String replaceSpace(String s) {
+    if(s == null || s.length() == 0){
+        return s;
+    }
+    //扩充空间，空格数量2倍
+    StringBuilder str = new StringBuilder();
+    for (int i = 0; i < s.length(); i++) {
+        if(s.charAt(i) == ' '){
+            str.append("  ");
+        }
+    }
+    //若是没有空格直接返回
+    if(str.length() == 0){
+        return s;
+    }
+    //有空格情况 定义两个指针
+    int left = s.length() - 1;//左指针：指向原始字符串最后一个位置
+    s += str.toString();
+    int right = s.length()-1;//右指针：指向扩展字符串的最后一个位置
+    char[] chars = s.toCharArray();
+    while(left>=0){
+        if(chars[left] == ' '){
+            chars[right--] = '0';
+            chars[right--] = '2';
+            chars[right] = '%';
+        }else{
+            chars[right] = chars[left];
+        }
+        left--;
+        right--;
+    }
+    return new String(chars);
+}
+```
 
 
 Go：
+```go
+// 遍历添加
+func replaceSpace(s string) string {
+    b := []byte(s)
+    result := make([]byte, 0)
+    for i := 0; i < len(b); i++ {
+        if b[i] == ' ' {
+            result = append(result, []byte("%20")...)
+        } else {
+            result = append(result, b[i])
+        }
+    }
+    return string(result)
+}
+
+// 原地修改
+func replaceSpace(s string) string {
+    b := []byte(s)
+    length := len(b)
+    spaceCount := 0
+    // 计算空格数量
+    for _, v := range b {
+        if v == ' ' {
+            spaceCount++
+        }
+    }
+    // 扩展原有切片
+    resizeCount := spaceCount * 2
+    tmp := make([]byte, resizeCount)
+    b = append(b, tmp...)
+    i := length - 1
+    j := len(b) - 1
+    for i >= 0 {
+        if b[i] != ' ' {
+            b[j] = b[i]
+            i--
+            j--
+        } else {
+            b[j] = '0'
+            b[j-1] = '2'
+            b[j-2] = '%'
+            i--
+            j = j - 3
+        }
+    }
+    return string(b)
+}
+```
+
+
+
+
+python：
+```python
+class Solution:
+    def replaceSpace(self, s: str) -> str:
+        counter = s.count(' ')
+        
+        res = list(s)
+        # 每碰到一个空格就多拓展两个格子，1 + 2 = 3个位置存’%20‘
+        res.extend([' '] * counter * 2)
+        
+        # 原始字符串的末尾，拓展后的末尾
+        left, right = len(s) - 1, len(res) - 1
+        
+        while left >= 0:
+            if res[left] != ' ':
+                res[right] = res[left]
+                right -= 1
+            else:
+                # [right - 2, right), 左闭右开
+                res[right - 2: right + 1] = '%20'
+                right -= 3
+            left -= 1
+        return ''.join(res)
+            
+```
+
+```python
+class Solution:
+    def replaceSpace(self, s: str) -> str:
+        # method 1 - Very rude
+        return "%20".join(s.split(" "))
+
+        # method 2 - Reverse the s when counting in for loop, then update from the end.
+        n = len(s)
+        for e, i in enumerate(s[::-1]):
+            print(i, e)
+            if i == " ":
+                s = s[: n - (e + 1)] + "%20" + s[n - e:]
+            print("")
+        return s
+```
+
+javaScript:
+
+```js
+/**
+ * @param {string} s
+ * @return {string}
+ */
+ var replaceSpace = function(s) {
+   // 字符串转为数组
+  const strArr = Array.from(s);
+  let count = 0;
+
+  // 计算空格数量
+  for(let i = 0; i < strArr.length; i++) {
+    if (strArr[i] === ' ') {
+      count++;
+    }
+  }
+
+  let left = strArr.length - 1;
+  let right = strArr.length + count * 2 - 1;
+
+  while(left >= 0) {
+    if (strArr[left] === ' ') {
+      strArr[right--] = '0';
+      strArr[right--] = '2';
+      strArr[right--] = '%';
+      left--;
+    } else {
+      strArr[right--] = strArr[left--];
+    }
+  }
+
+  // 数组转字符串
+  return strArr.join('');
+};
+```
+
+TypeScript：
+
+```typescript
+function replaceSpace(s: string): string {
+    let arr: string[] = s.split('');
+    let spaceNum: number = 0;
+    let oldLength: number = arr.length;
+    for (let i = 0; i < oldLength; i++) {
+        if (arr[i] === ' ') {
+            spaceNum++;
+        }
+    }
+    arr.length = oldLength + 2 * spaceNum;
+    let cur: number = oldLength - 1;
+    for (let i = arr.length - 1; i >= 0; i--, cur--) {
+        if (arr[cur] !== ' ') {
+            arr[i] = arr[cur]
+        } else {
+            arr[i] = '0';
+            arr[--i] = '2';
+            arr[--i] = '%';
+        }
+    }
+    return arr.join('');
+};
+```
+
+Swift:
+
+```swift
+func replaceSpace(_ s: String) -> String {
+    var strArr = Array(s)
+    var count = 0
+
+    // 统计空格的个数
+    for i in strArr {
+        if i == " " {
+            count += 1
+        }
+    }
+    // left 指向旧数组的最后一个元素
+    var left = strArr.count - 1
+    // right 指向扩容后数组的最后一个元素（这里还没对数组进行实际上的扩容）
+    var right = strArr.count + count * 2 - 1
+
+    // 实际对数组扩容
+    for _ in 0..<(count * 2) {
+        strArr.append(" ")
+    }
+
+    while left < right {
+        if strArr[left] == " " {
+            strArr[right] = "0"
+            strArr[right - 1] = "2"
+            strArr[right - 2] = "%"
+            left -= 1
+            right -= 3
+        } else {
+            strArr[right] = strArr[left]
+            left -= 1
+            right -= 1
+        }
+    }
+
+    return String(strArr)
+}
+```
+
 
 
 
 
 -----------------------
-* 作者微信：[程序员Carl](https://mp.weixin.qq.com/s/b66DFkOp8OOxdZC_xLZxfw)
-* B站视频：[代码随想录](https://space.bilibili.com/525438321)
-* 知识星球：[代码随想录](https://mp.weixin.qq.com/s/QVF6upVMSbgvZy8lHZS3CQ)
-<div align="center"><img src=../pics/公众号.png width=450 alt=> </img></div>
+<div align="center"><img src=https://code-thinking.cdn.bcebos.com/pics/01二维码一.jpg width=500> </img></div>
